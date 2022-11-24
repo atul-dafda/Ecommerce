@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -12,6 +13,8 @@ const Image = styled.img`
   ${mobile({ height: "25vh" })}
 `;
 const Info = styled.div`
+  background-blend-mode: overlay !important;
+  background-color: #00000069 !important;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -38,11 +41,13 @@ const Button = styled.button`
 const categoryItem = ({ Item }) => {
   return (
     <Container>
-      <Image src={Item.img} />
-      <Info>
-        <Title>{Item.title}</Title>
-        <Button>Shop Now</Button>
-      </Info>
+      <Link to={`/products/${Item.cat}`}>
+        <Image src={Item.img} />
+        <Info>
+          <Title>{Item.title}</Title>
+          <Button>Shop Now</Button>
+        </Info>
+      </Link>
     </Container>
   );
 };
