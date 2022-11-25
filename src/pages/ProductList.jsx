@@ -35,9 +35,7 @@ const ProductList = () => {
             className={styles.Select}
             onChange={handleFilters}
           >
-            <option className={styles.Option} disabled selected>
-              Color
-            </option>
+            <option className={styles.Option}>Color</option>
             <option className={styles.Option} value="white">
               White
             </option>
@@ -59,9 +57,7 @@ const ProductList = () => {
             className={styles.Select}
             onChange={handleFilters}
           >
-            <option className={styles.Option} disabled selected>
-              Size
-            </option>
+            <option className={styles.Option}>Size</option>
             <option className={styles.Option}>XS</option>
             <option className={styles.Option}>S</option>
             <option className={styles.Option}>M</option>
@@ -76,7 +72,7 @@ const ProductList = () => {
             name="sort"
             onChange={(e) => setSort(e.target.value)}
           >
-            <option className={styles.Option} selected value="newest">
+            <option className={styles.Option} value="newest">
               Newest
             </option>
             <option className={styles.Option} value="asc">
