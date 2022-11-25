@@ -1,12 +1,27 @@
-import styled from "styled-components";
+//import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
 import styles from "./ProductList.module.css";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const ProductList = () => {
+  const location = useLocation();
+  const cat = location.pathname.split("/")[2];
+  const [filters, setFilter] = useState({});
+  const [sort, setSort] = useState("newest");
+
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilter({
+      ...filters,
+      [e.target.name]: value,
+    });
+  };
+  console.log(filters);
   return (
     <div className={styles.Container}>
       <Navbar />
@@ -15,17 +30,35 @@ const ProductList = () => {
       <div className={styles.FilterContainer}>
         <div className={styles.Filter}>
           <span className={styles.FilterText}>Filter Products:</span>
-          <select className={styles.Select}>
+          <select
+            name="color"
+            className={styles.Select}
+            onChange={handleFilters}
+          >
             <option className={styles.Option} disabled selected>
               Color
             </option>
-            <option className={styles.Option}>White</option>
-            <option className={styles.Option}>Black</option>
-            <option className={styles.Option}>Red</option>
-            <option className={styles.Option}>Yellow</option>
-            <option className={styles.Option}>Pink</option>
+            <option className={styles.Option} value="white">
+              White
+            </option>
+            <option className={styles.Option} value="black">
+              Black
+            </option>
+            <option className={styles.Option} value="red">
+              Red
+            </option>
+            <option className={styles.Option} value="yellow">
+              Yellow
+            </option>
+            <option className={styles.Option} value="pink">
+              Pink
+            </option>
           </select>
-          <select className={styles.Select}>
+          <select
+            name="size"
+            className={styles.Select}
+            onChange={handleFilters}
+          >
             <option className={styles.Option} disabled selected>
               Size
             </option>
@@ -38,19 +71,24 @@ const ProductList = () => {
         </div>
         <div className={styles.Filter}>
           <span className={styles.FilterText}>Sort Products:</span>
-          <select className={styles.Select}>
-            <option className={styles.Option} selected>
+          <select
+            className={styles.Select}
+            name="sort"
+            onChange={(e) => setSort(e.target.value)}
+          >
+            <option className={styles.Option} selected value="newest">
               Newest
             </option>
-            <option className={styles.Option}>Price (asc)</option>
-            <option className={styles.Option}>Price (desc)</option>
-            <option className={styles.Option}>Red</option>
-            <option className={styles.Option}>Yellow</option>
-            <option className={styles.Option}>Pink</option>
+            <option className={styles.Option} value="asc">
+              Price (asc)
+            </option>
+            <option className={styles.Option} value="desc">
+              Price (desc)
+            </option>
           </select>
         </div>
       </div>
-      <Products />
+      <Products cat={cat} filters={filters} sort={sort} />
       <Newsletter />
       <Footer />
     </div>
