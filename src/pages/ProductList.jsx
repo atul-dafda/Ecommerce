@@ -26,7 +26,7 @@ const ProductList = () => {
     <div className={styles.Container}>
       <Navbar />
       <Announcement />
-      <h1 className={styles.Title}>Dresses</h1>
+      <h1 className={styles.Title}>{cat}</h1>
       <div className={styles.FilterContainer}>
         <div className={styles.Filter}>
           <span className={styles.FilterText}>Filter Products:</span>
@@ -37,19 +37,19 @@ const ProductList = () => {
           >
             <option className={styles.Option}>Color</option>
             <option className={styles.Option} value="white">
-              White
+              white
             </option>
             <option className={styles.Option} value="black">
-              Black
+              black
             </option>
             <option className={styles.Option} value="red">
-              Red
+              red
             </option>
             <option className={styles.Option} value="yellow">
-              Yellow
+              yellow
             </option>
             <option className={styles.Option} value="pink">
-              Pink
+              pink
             </option>
           </select>
           <select
