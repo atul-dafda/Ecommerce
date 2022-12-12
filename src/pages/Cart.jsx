@@ -157,7 +157,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
-
+  console.log(cart);
   const onToken = (token) => {
     setStripeToken(token);
   };
@@ -169,7 +169,7 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: 500,
         });
-        history.push("/success", {
+        history.push("/sucess", {
           stripeData: res.data,
           products: cart,
         });
@@ -255,7 +255,8 @@ const Cart = () => {
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
-              amount={cart.total * 100}
+              //amount={cart.total * 100}
+              amount="500"
               token={onToken}
               stripeKey={KEY}
             >
